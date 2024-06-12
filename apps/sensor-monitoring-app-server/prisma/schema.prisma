@@ -1,0 +1,71 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Login {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  password  String?
+  updatedAt DateTime @updatedAt
+  username  String?
+}
+
+model PH {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  timestamp DateTime?
+  updatedAt DateTime  @updatedAt
+  value     Float?
+}
+
+model Temperature {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  timestamp DateTime?
+  updatedAt DateTime  @updatedAt
+  value     Float?
+}
+
+model Location {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  latitude  Float?
+  longitude Float?
+  timestamp DateTime?
+  updatedAt DateTime  @updatedAt
+}
+
+model Acceleration {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  timestamp DateTime?
+  updatedAt DateTime  @updatedAt
+  x         Float?
+  y         Float?
+  z         Float?
+}
+
+model Turbidity {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  timestamp DateTime?
+  updatedAt DateTime  @updatedAt
+  value     Float?
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
